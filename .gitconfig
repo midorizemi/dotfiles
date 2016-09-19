@@ -1,0 +1,14 @@
+[user]
+	name = taopipi
+	email = taoiwasaki.dev@gmail.com
+[color]
+	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	editor = vim -c \"set fenc=utf-8\"
+	precomposeunicode = true
+	quotepath = false
+[push]
+	default = simple
