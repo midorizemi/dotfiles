@@ -1,6 +1,12 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+export PATH=/usr/local/bin:$PATH
+# PATH の内容と同期している配列変数 path も使える
+path=(
+    /Applications/CMake.app/Contents/bin(N-/)
+    $HOME/bin(N-/)
+    $HOME/usr/bin(N-/)
+    $path
+)
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/tiwasaki/.oh-my-zsh
 
