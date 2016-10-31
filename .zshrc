@@ -8,12 +8,12 @@ path=(
     $path
 )
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/tiwasaki/.oh-my-zsh
+#export ZSH=/Users/tiwasaki/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -59,8 +59,6 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -98,3 +96,11 @@ typeset -U path cdpath fpath manpath
 typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
 sudo_path=({/usr/local,/usr,}/sbin(N-/))
+
+#zplug
+source ~/.zplug/init.zsh
+
+zplug "sorin-ionescu/prezto"
+zplug "zplug/zplug"
+# コマンドをリンクして、PATH に追加し、プラグインは読み込む
+zplug load --verbose
