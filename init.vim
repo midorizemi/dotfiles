@@ -8,11 +8,11 @@ set ambiwidth=double
 
 " tab indents "
 set expandtab
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 set autoindent
 set smartindent
-set shiftwidth=4
+set shiftwidth=2
 
 " search "
 set incsearch
@@ -81,17 +81,55 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 " call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 " call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
-" dein "
-let s:dein_dir = expand('$CACHE/dein')
-if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir)
-    call dein#load_toml('~/.vim/rc/dein.toml',          {'lazy': 0})
-
-    " call dein#load_toml('~/.vim/rc/dein_lazy.toml',     {'lazy': 1})
-    " call dein#load_toml('~/.vim/rc/dein_neo.toml',      {'lazy': 1})
-    " call dein#load_toml('~/.vim/rc/dein_python.toml',   {'lazy': 1})
-    " call dein#load_toml('~/.vim/rc/dein_go.toml',       {'lazy': 1})
-    " call dein#load_toml('~/.vim/rc/dein_frontend.toml', {'lazy': 1})
-    call dein#end()
-    call dein#save_state()
+if !empty($TERM_PROGRAM) && $TERM_PROGRAM == 'Apple_Terminal'
+  set t_SH=
 endif
+
+" dein "
+"dein Scripts-----------------------------
+let s:dein_cache_dir = expand('$VIM_CACHE/dein')
+let s:dein_config_dir = expand('$XDG_CONFIG_HOME/nvim/dein/tomls/')
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/home/cde/.vim/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state(s:dein_cache_dir)
+  call dein#begin(s:dein_cache_dir)
+
+  " Let dein manage dein
+  " Required:
+  " call dein#add(s:dein_cache_dir.'/repos/github.com/Shougo/dein.vim')
+  call dein#load_toml(s:dein_config_dir.'dein.toml',          {'lazy': 0})
+  call dein#load_toml(s:dein_config_dir.'dein_lazy.toml',     {'lazy': 1})
+
+
+  call dein#load_toml(s:dein_config_dir.'dein_clang.toml', {'lazy': 1})
+  " Add or remove your plugins here like this:
+  " call dein#add('cespare/vim-toml')
+
+
+  " Load tomls:
+  " call dein#load_toml('~/.vim/rc/dein_neo.toml',      {'lazy': 1})
+  " call dein#load_toml('~/.vim/rc/dein_python.toml',   {'lazy': 1})
+  " call dein#load_toml('~/.vim/rc/dein_go.toml',       {'lazy': 1})
+  " call dein#load_toml('~/.vim/rc/dein_frontend.toml', {'lazy': 1})
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
+
+"End dein Scripts-------------------------

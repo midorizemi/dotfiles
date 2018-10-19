@@ -1,0 +1,29 @@
+#alieases for bash
+
+# fd - cd to selected directory
+function fcd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cdls "$dir"
+}
+
+function fhist() {
+	  if type tac > /dev/null 2>&1; then tac="tac"; else tac="tail -r"; fi
+  shopt -u nocaseglob nocasematch
+  echo $(HISTTIMEFORMAT= history | command $tac | sed -e 's/^ *[0-9]\{1,\}\*\{0,1\} *//' -e 's/ *$//' | awk '!a[$0]++' |
+      FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --sync -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m" $(__fzfcmd))
+}
+
+function cdls()
+{
+  builtin cd "$@" && ls
+}
+
+alias newdr='touch dr-`date "+%Y%m%d"`.md'
+
+alias kinetic_setup='source /opt/ros/kinetic/setup.bash'
+alias catkin_setup='source ~/catkin_ws/devel/setup.bash'
+alias catkm_ex='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $1'
+alias catkin_exdebu='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $@'
+alias rosrungdb='rosrun --prefix "gdb --args" $1 $2'

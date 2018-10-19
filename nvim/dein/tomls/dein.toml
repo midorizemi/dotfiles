@@ -1,0 +1,7 @@
+# Required:
+[[plugins]]
+repo = '/home/cde/.vim/dein/repos/github.com/Shougo/dein.vim'
+
+[[plugins]]
+repo = 'leico/autodate.vim'
+
