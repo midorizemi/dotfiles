@@ -1,18 +1,38 @@
-[user]
-	name = taopipi
-	email = taoiwasaki.dev@gmail.com
+[include]
+  path = ~/.gitconfig.local
+
+[core]
+	editor = vim -c \"set fenc=utf-8\"
+
 [color]
 	ui = auto
 	diff = auto
 	status = auto
 	branch = auto
-[core]
-	editor = vim -c \"set fenc=utf-8\"
-	precomposeunicode = true
-	quotepath = false
-[push]
-	default = simple
+
 [alias]
-	ls = !git ls-files -t|perl -pe 's/\\/.*/\\//'|uniq -c
-	ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
-	la = ls-files -cdmokt
+	st = status
+	sh = show
+	cm = commit
+	cmt = commit -v
+	coma = commit -a
+	cma = commit -a
+	co = checkout
+	dc = diﬀ --cached
+	df = diﬀ
+	d = diﬀ -C
+	ds = diﬀ -C --stat
+	dsp = diﬀ -C --stat -pd
+	w = diﬀ -C --color-words
+	lg = log --graph --all --color --pretty=%x09%h %cn%x09%s %Cred%d
+	l = log
+	m = checkout master
+
+[credential]
+	helper = gnomekeyring
+
+[ghq]
+  root = ~/.ghq
+  root = ~/.go/src
+  root = ~/gitrepos
+  root = ~/catkin_ws/src
