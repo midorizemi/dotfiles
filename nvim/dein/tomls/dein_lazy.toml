@@ -48,11 +48,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 '''
 
 [[plugins]]
-repo = 'sudar/vim-arduino-syntax'
-on_ft = ['arduino']
-
-
-[[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
 
@@ -67,3 +62,7 @@ repo = 'scrooloose/nerdtree'
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
+# syntax highlight
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']

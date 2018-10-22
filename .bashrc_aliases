@@ -20,6 +20,9 @@ function cdls()
   builtin cd "$@" && ls
 }
 
+alias reln='ln -nfs $1 $2'
+alias lnls='ll |grep "^l"'
+
 alias newdr='touch dr-`date "+%Y%m%d"`.md'
 
 alias kinetic_setup='source /opt/ros/kinetic/setup.bash'
@@ -27,3 +30,5 @@ alias catkin_setup='source ~/catkin_ws/devel/setup.bash'
 alias catkm_ex='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $1'
 alias catkin_exdebu='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $@'
 alias rosrungdb='rosrun --prefix "gdb --args" $1 $2'
+
+alias vinit='nvim ~/.config/nvim/init.vim'

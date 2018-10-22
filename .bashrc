@@ -76,7 +76,7 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls --color=always'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -130,3 +130,19 @@ export XDG_DATA_HOME=$HOME'/.local/share'
 
 #C++ debug
 ulimit -c unlimited
+
+# pyenv
+if [ -x $HOME/.pyenv ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+#pipenv
+PIPENV_VENV_IN_PROJECT=true
+
+#Go
+export GOPATH=$HOME/go
+export PATH="/usr/lib/go-1.10/bin:$GOPATH/bin:$PATH"
