@@ -32,3 +32,5 @@ alias catkin_exdebu='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD
 alias rosrungdb='rosrun --prefix "gdb --args" $1 $2'
 
 alias vinit='nvim ~/.config/nvim/init.vim'
+
+alias goto='cd `ghq list -p | fzf`'

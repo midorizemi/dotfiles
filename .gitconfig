@@ -29,7 +29,7 @@
 	m = checkout master
 
 [credential]
-	helper = gnomekeyring
+	helper = cache --timeout=3600
 
 [ghq]
   root = ~/.ghq
