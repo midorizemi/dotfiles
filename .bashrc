@@ -1,7 +1,17 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
+echo "Load ~/.bashrc"
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bashrc_aliases ]; then
+    . ~/.bashrc_aliases
+fi
+
+# for examples
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -97,15 +107,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bashrc_aliases ]; then
-    . ~/.bashrc_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -116,9 +117,12 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# ROS
 source /opt/ros/kinetic/setup.bash
 source ~/catkin_ws/devel/setup.bash
 
+# FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
@@ -134,15 +138,16 @@ ulimit -c unlimited
 # pyenv
 if [ -x $HOME/.pyenv ]; then
   export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
+  pathadd PATH "$PYENV_ROOT/bin"
 fi
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
 #pipenv
-PIPENV_VENV_IN_PROJECT=true
+export PIPENV_VENV_IN_PROJECT=true
 
 #Go
 export GOPATH=$HOME/go
-export PATH="/usr/lib/go-1.10/bin:$GOPATH/bin:$PATH"
+pathadd PATH "/usr/lib/go-1.10/bin"
+pathadd PATH "$GOPATH/bin"

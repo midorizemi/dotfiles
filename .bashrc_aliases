@@ -1,4 +1,54 @@
-#alieases for bash
+echo "Load ~/.bashrc_aliases"
+# functions for bash
+function path_show(){
+  echo -e ${PATH//:/'\n'}
+}
+
+# パスを追加する関数
+pathadd() {
+    # 環境変数名を第一引数として受け取る
+    envname=$1
+    # 環境変数の中に格納されているパスを保存
+    eval envpath='$'$envname
+    # 第二引数として受け取った追加するパスの末尾から/を除き変数pathtoaddへ保存
+    pathtoadd="${2%/}"
+    # 最初に環境変数内をきれいにする
+    # (1) 連続するコロンがないか探し一つにまとめる
+    # (2) 先頭または末尾のコロンを削除する
+    eval $envname="$(echo $envpath | sed -r -e 's;:{2,};:;g' -e 's;^:|:$;;g')"
+    # ディレクトリが存在し、かつ環境変数内に受け取ったパスが存在しない場合のみ、パスを追加する
+    if [[ -d "$pathtoadd" && $(echo $envpath | grep -E -c "(^|:)$pathtoadd($|:)") -eq 0 ]]; then
+        # 第三引数としてafterが追加されているときは末尾にパスを追加
+        # それ以外のときは先頭に追加
+        if [ "$3" = "after" ]; then
+            eval $envname="$envpath:$pathtoadd"
+        else
+            eval $envname="$pathtoadd:$envpath"
+        fi
+    fi
+}
+
+# パスを削除する関数
+pathrm() {
+    # 環境変数名を第一引数として受け取る
+    envname=$1
+    # 環境変数の中に格納されているパスを保存
+    eval envpath='$'$envname
+    # 第二引数として受け取った追加するパスの末尾から/を除き変数pathtormへ保存
+    pathtorm="${2%/}"
+    # 環境変数内から該当するパスを削除
+    # (1) パスが含まれている場合は空白へ変換する
+    # (2) 先頭または末尾にコロンがある場合は削除する
+    # (3) コロンが二連続する場合は一つ削除する
+    eval $envname="$(echo $envpath | sed -r -e "s;(^|:)$pathtorm(:|$);\1\2;g" -e 's;^:|:$;;g' -e 's;::;:;g')"
+}
+
+function cd {
+    builtin cd "$@"
+    if [ -f "Pipfile" ] ; then
+        pipenv shell
+    fi
+}
 
 # fd - cd to selected directory
 function fcd() {
@@ -20,6 +70,7 @@ function cdls()
   builtin cd "$@" && ls
 }
 
+#alieases for bash
 alias reln='ln -nfs $1 $2'
 alias lnls='ll |grep "^l"'
 
@@ -31,6 +82,16 @@ alias catkm_ex='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $1'
 alias catkin_exdebu='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $@'
 alias rosrungdb='rosrun --prefix "gdb --args" $1 $2'
 
+#VIM
 alias vinit='nvim ~/.config/nvim/init.vim'
 
+#GHQ
 alias goto='cd `ghq list -p | fzf`'
+
+# pipenv
+alias p='pipenv $@'
+alias pi='p install --skip-lock $@'
+alias ps='p shell'
+
+#python
+alias pyplo='python -m cProfile -s time $1 > $2'
