@@ -146,6 +146,10 @@ fi
 
 #pipenv
 export PIPENV_VENV_IN_PROJECT=true
+pypath_switch
+
+#Flann for cyflann package issue
+export FLANN_DIR="/usr/lib/x86_64-linux-gnu"
 
 #Go
 export GOPATH=$HOME/go

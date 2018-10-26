@@ -43,11 +43,24 @@ pathrm() {
     eval $envname="$(echo $envpath | sed -r -e "s;(^|:)$pathtorm(:|$);\1\2;g" -e 's;^:|:$;;g' -e 's;::;:;g')"
 }
 
-function cd {
-    builtin cd "$@"
-    if [ -f "Pipfile" ] ; then
-        pipenv shell
+function pypath_switch() {
+  if [ -z ${_OLD_PYTHONPATH} ]; then
+    if [ -x ".venv" ] ; then
+      _OLD_PYTHONPATH=$PYTHONPATH
+      pathadd PYTHONPATH '`pwd`/.venv/lib/python3.5/site-packages'
+      pathadd PYTHONPATH '`pwd`/src'
     fi
+  else
+    PYTHONPATH=$_OLD_PYTHONPATH
+    unset _OLD_PYTHONPATH
+  fi
+}
+
+function cd {
+  builtin cd "$@"
+  if [ -f "Pipfile" ] ; then
+    pipenv shell
+  fi
 }
 
 # fd - cd to selected directory
@@ -68,6 +81,14 @@ function fhist() {
 function cdls()
 {
   builtin cd "$@" && ls
+}
+
+function pyprof(){
+  dir=$3"/"
+  if [ -z $3 ]; then
+    dir=""
+  fi
+  python -m cProfile -s time $1 > "${dir}profile$2-$1.txt"
 }
 
 #alieases for bash
@@ -94,4 +115,4 @@ alias pi='p install --skip-lock $@'
 alias ps='p shell'
 
 #python
-alias pyplo='python -m cProfile -s time $1 > $2'
+
