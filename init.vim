@@ -132,4 +132,10 @@ if dein#check_install()
   call dein#install()
 endif
 
+" file type
+autocmd BufNewFile,BufRead *.launch setfiletype xml
 "End dein Scripts-------------------------
+"
+"Status Line
+" set laststatus=2
+" set statusline=%y "または%Y

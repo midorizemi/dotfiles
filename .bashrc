@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 
 echo "Load ~/.bashrc"
+
+# コンソールをVIMキーバインド
+set -o vi
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -155,3 +158,12 @@ export FLANN_DIR="/usr/lib/x86_64-linux-gnu"
 export GOPATH=$HOME/go
 pathadd PATH "/usr/lib/go-1.10/bin"
 pathadd PATH "$GOPATH/bin"
+
+#Console desine
+#function _update_ps1() {
+#    PS1=$(powerline-shell $?)
+#}
+#
+#if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+#fi

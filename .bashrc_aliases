@@ -97,11 +97,13 @@ alias lnls='ll |grep "^l"'
 
 alias newdr='touch dr-`date "+%Y%m%d"`.md'
 
+#ROS
 alias kinetic_setup='source /opt/ros/kinetic/setup.bash'
 alias catkin_setup='source ~/catkin_ws/devel/setup.bash'
 alias catkm_ex='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $1'
 alias catkin_exdebu='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $@'
 alias rosrungdb='rosrun --prefix "gdb --args" $1 $2'
+alias rosrundebug='rosrun --prefix "gdb --args" $@'
 
 #VIM
 alias vinit='nvim ~/.config/nvim/init.vim'
@@ -112,7 +114,9 @@ alias goto='cd `ghq list -p | fzf`'
 # pipenv
 alias p='pipenv $@'
 alias pi='p install --skip-lock $@'
-alias ps='p shell'
+alias psh='p shell'
 
 #python
 
+#git
+alias g='git'
