@@ -116,6 +116,10 @@ alias p='pipenv $@'
 alias pi='p install --skip-lock $@'
 alias psh='p shell'
 
+# pip
+alias pipinst='\pip install --user $@'
+alias pip3inst='\pip3 install --user $@'
+
 #python
 
 #git
