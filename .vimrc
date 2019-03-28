@@ -4,9 +4,9 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/tiwasaki/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
 " Required:
-call dein#begin('/Users/tiwasaki/.vim/dein/')
+call dein#begin('$HOME/.vim/dein/')
 
 " Let dein manage dein
 " Required:
@@ -205,6 +205,9 @@ if has('syntax')
     augroup END
     call ZenkakuSpace()
 endif
+
+"記号表示
+set ambiwidth=double  "Display double-width symbols properly
 
 "viとの互換性を無効にする(INSERT中にカーソルキーが有効になる)
 set nocompatible
