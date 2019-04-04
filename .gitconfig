@@ -3,7 +3,17 @@
 
 [core]
 	editor = vim -c \"set fenc=utf-8\"
+	excludesfile = /Users/sysstaff01/.gitignore_global
+	autocrlf = input
 
+[ghq]
+    root = ~/.ghq
+    root = ~/go/src
+
+[pull]
+	ff = only
+[merge]
+	ff = false
 [color]
 	ui = auto
 	diff = auto
@@ -11,28 +21,24 @@
 	branch = auto
 
 [alias]
-	st = status
-	sh = show
-	cm = commit
-	cmt = commit -v
-	coma = commit -a
-	cma = commit -a
-	co = checkout
-	dc = diﬀ --cached
-	df = diﬀ
-	d = diﬀ -C
-	ds = diﬀ -C --stat
-	dsp = diﬀ -C --stat -pd
-	w = diﬀ -C --color-words
-	lg = log --graph --all --color --pretty=%x09%h %cn%x09%s %Cred%d
-	l = log
-	m = checkout master
+    st = status
+    sh = show
+    cm = commit
+    cmt = commit -v
+    coma = commit -a
+    cma = commit -a
+    co = checkout
+    dc = diﬀ --cached
+    df = diﬀ
+    d = diﬀ -C
+    ds = diﬀ -C --stat
+    dsp = diﬀ -C --stat -pd
+    w = diﬀ -C --color-words
+    lg = log --graph --all --color --pretty=%x09%h %cn%x09%s %Cred%d
+    l = log
+    m = checkout master
+    delete-merged-branch = "!f () { git branch --merged | egrep -v '\\*|master|develop' | xargs git branch -d; }; f"
 
 [credential]
 	helper = cache --timeout=3600
 
-[ghq]
-  root = ~/.ghq
-  root = ~/.go/src
-  root = ~/gitrepos
-  root = ~/catkin_ws/src

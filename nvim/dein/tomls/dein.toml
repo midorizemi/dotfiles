@@ -1,7 +1,32 @@
 # Required:
 [[plugins]]
-repo = '/home/cde/.vim/dein/repos/github.com/Shougo/dein.vim'
+repo = '$HOME/.vim/dein/repos/github.com/Shougo/dein.vim'
 
 [[plugins]]
 repo = 'leico/autodate.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+
+# neotrees------------------
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
+
+[[plugins]] # カラースキーマ
+repo = 'w0ng/vim-hybrid'
+
+[[plugins]]
+repo = 'tomasr/molokai'
 

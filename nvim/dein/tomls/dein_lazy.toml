@@ -1,5 +1,4 @@
 # deoplete------------------
-
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 dependens = 'context_filetype.vim'
@@ -12,7 +11,9 @@ inoremap <expr><tab> pumvisible() ? "\<C-n>" :
 '''
 on_i = 1
 
-
+# unite----------------
+[[plugins]]
+repo   = 'Shougo/unite.vim'
 
 # neosnippet----------------
 
@@ -49,14 +50,42 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+on_source = ['neosnippet.vim']
 
+[[plugins]]
+repo = 'honza/vim-snippets'
+
+# unite.vim を読み込んだら一緒に読み込む
+[[plugins]]
+repo      = 'Shougo/neomru.vim'
+on_source = ['unite.vim']
+
+[[plugins]]
+repo = "davidhalter/jedi-vim"
+on_ft = ['python']
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = ['go']
+
+[[plugins]]
+repo = 'godlygeek/tabular'
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+depends = ['vim-markdown']
+on_ft = ['markdown','mkd','md']
+
+# quote内のプログラムをシンタックスハイライトする
+[[plugins]]
+repo = 'joker1007/vim-markdown-quote-syntax'
+on_ft = ['markdown','mkd', 'md']
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
-# neotrees------------------
 [[plugins]]
-repo = 'scrooloose/nerdtree'
+repo = 'tpope/vim-surround'
 
 # vim-gitguitter------------------
 [[plugins]]
