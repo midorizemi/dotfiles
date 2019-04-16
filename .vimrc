@@ -338,3 +338,4 @@ nnoremap <Leader>w :w<CR>
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 nmap <Leader><Tab> <C-w>w
+nnoremap <Leader>dt o<ESC>:.!date +\%H:\%M<CR>kJ
