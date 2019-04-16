@@ -3,8 +3,9 @@
 
 [core]
 	editor = vim -c \"set fenc=utf-8\"
-	excludesfile = /Users/sysstaff01/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	autocrlf = input
+	whitespace = cr-at-eol
 
 [ghq]
     root = ~/.ghq
