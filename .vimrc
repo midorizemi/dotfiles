@@ -30,6 +30,7 @@ filetype plugin indent on
 if dein#check_install()
   call dein#install()
 endif
+" call map(dein#check_clean(), "delete(v:val, 'rf')")
 
 "End dein Scripts-------------------------
 
@@ -301,41 +302,42 @@ end
 ""let g:neocomplete#disable_auto_complete = 1
 ""inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"" Enable omni completion. Neocomplete
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
+"if !exists('g:neocomplete#sources#omni#input_patterns')
+"  let g:neocomplete#sources#omni#input_patterns = {}
+"endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-"Quick run Settings-------------------------------------
-let g:quickrun_config={}
-let g:quickrun_config['tex'] = {
-            \ 'runner' : 'vimproc',
-            \ 'command' : 'latexmk_wrapper',
-            \ 'outputter' : 'error',
-            \ 'outputter/error/success' : 'null',
-            \ 'outputter/error/error' : 'quickfix',
-            \ 'srcfile' : expand("%s"),
-            \ 'exec': '%c %s %a %o',
-            \}
+""Quick run Settings-------------------------------------
+"let g:quickrun_config={}
+"let g:quickrun_config['tex'] = {
+"            \ 'runner' : 'vimproc',
+"            \ 'command' : 'latexmk_wrapper',
+"            \ 'outputter' : 'error',
+"            \ 'outputter/error/success' : 'null',
+"            \ 'outputter/error/error' : 'quickfix',
+"            \ 'srcfile' : expand("%s"),
+"            \ 'exec': '%c %s %a %o',
+"            \}
 
-"" Mapleader
+"" Mapleader <Space> + key
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 nmap <Leader><Tab> <C-w>w
 nnoremap <Leader>dt o<ESC>:.!date +\%H:\%M<CR>kJ
+inoremap <silent> jj <ESC><CR>
